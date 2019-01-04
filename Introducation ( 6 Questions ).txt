@@ -1,0 +1,88 @@
+Q1. Tell me yourself?
+
+
+Answer:
+• My name is mohammad abdul mushtaq. I have completed my graduation in B.sc 2006 from dr. babasaheb ambedkar maharatwada university Aurangabad, Maharashtra.
+
+• After my dgree i joined R-Tech company as a Hardware engineer. 
+• In october 2008 i joind GK Computers Hyderabad company as Desktop Support Engineer after two years i was promoted as System Administrator
+
+• I resigned from GK Computers in july 2014. and started leraning about the up coming technology like hadoop, sap and other technology.
+
+• I decided to start my journey with hadoop because my perivous skills were matching with hadoop platform like linux os, and windows active directory, so i decided to continue with hadoop technology.
+
+• After that I got an opportunity to work with Starsun Technologies Pune as a Associate Hadoop Admin in Sep 2014 after one year i was promoted as Hadoop Administrator and since till date i am working with Starsun Technologies.
+
+
+Q2.Tell me brief about your project? OR
+how many projects you have handled?
+Answer:- 
+Currently I'm working on HVAC sensor data and analysis project where daily jobs are running on our production cluster, 
+As my company is analysis IT company where all data realted to buildings such as temperature,ventilation and A/C which generates the data in logs .
+This all data comes to our cluster. 
+On client side they have there own development teams which writes the program to process data.
+Our job is to make sure that the cluster is up and running if they face any issues like slow running Hive/HBase jobs 
+We have to make sure that enough space and resources available cluster.
+
+Q3. Tell me your cluster planning? OR
+How will you calculate the size of your hadoop cluster? capacity planning?
+Answer:
+1) I am working on 20 nodes of cluster. wherein  3 our master nodes, 15 data nodes, 1 edge node, 1 cms node.
+
+
+
+Q4. Cluster Configurations:
+Answer: 
+1) Master nodes: (1 Namenode, 1 SNN & RM and 1 RM2, HIverserver2, HiveServer3)
+The configuration of Masters are (3 masters)
+We have 60 Core process and storage is 2tb and 256GB RAM
+
+ 2) Slave Configuration are(Datanode 15)
+The configuration of slaves are
+We have 40 Core process and storage is 2tb and 128GB RAM
+
+3) 0ne edge node/gateway node and one cms node
+both configurations are
+we have 40 Core process, 128GB RAM and storage is 2tb ( each of 1tb) 
+
+Q5. Tell my your Cluster Capacity Planing OR
+How will you calculate the size of your hadoop cluster? capacity planning?
+Answer:
+1) As i tell you that we have 20 node cluster and daily data is coming to our cluster is 20 GB
+and per month it is upto 600 GB . daily data coming to our cluster is 20 GB with replication 3*20=60gb
+60*30=1.800 gb 
+2) So the per year data is 12*1.8=21.6tb TB--------------------It is our per year data .
+3) Along with 30% non-dfs 21.6+6.48(non dfs 30 %)=28.04=30TB. It is upto nearly 30 TB.
+4) Also there is 5% overhead if extra space is needed then the total is about 28.04=(5% overhead)=29.84 TB soo approximately 
+it is 30 TB.
+5) So we chose 2TB  data on datanode 
+6) So our 1 year data planning upto 38 TB
+7) My total cluster size is 30TB(DN)+2TB(NN)+2TB(SNN& RM)+2TB (RM2, HIveServer2, & HiveServer3)+2TB(1TB Edge+1TB CMS)= 38 TB
+
+Q6. Tell me about your day to day activities
+Ans:-
+• Logging into the cluster administration console.
+Checking my clusters health.
+Hdfs dfsadmin -report.
+Hdfs dfsadmin -report -live.
+• Monitor Hadoop cluster connectivity and performance.
+• Checking if the replication factor of my cluster is fulfilled.
+Using fsck or admin report.
+•Checking if all the nodes are performing the way they are expected to perform.
+Fsck 
+• Maintaining the performance of my cluster by monitoring the jobs.
+Resource Manager.
+• File system management and monitoring.
+• Manage and analyze Hadoop log files.
+• HDFS support and maintenance.
+• Setting up new Hadoop users.
+• Management for the nodes.
+• Handling backups to the metadata of the cluster and other Eco-system meta data
+• Standard System Admin work like creating new users in Hadoop, handling permissions, performing upgrades.
+• Day to Day Cluster issues like finding out which jobs are taking more time, if users say that jobs are stuck to find out the reason.
+• If there are no jobs to run then we will keep the job running until a job comes to rebalance the data on the cluster using balancer command. 
+start-balancer.sh.
+• In large clusters, there would always be a Dev, Staging and Production cluster and the above work would be on all of them
+
+
+===================================================================================================================================================

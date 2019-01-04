@@ -1,0 +1,331 @@
+Set One
+======
+
+1) What is Big Data?
+Big data is defined as the voluminous amount of structured, unstructured or semi-structured data that has huge potential for mining 
+but is so large that it cannot be processed using traditional database systems. 
+
+2) Explain what is Hadoop?
+It is an open-source software framework for storing data and running applications on clusters of commodity hardware.  
+It provides enormous processing power and massive storage for any type of data.
+
+3) Why there's a need for zookeper in hadoop cluster?
+Ans:
+The purpose of Zookeeper is cluster management. ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization,
+and providing group services. All of these kinds of services are used in some form or another by distributed applications.
+
+4) What is difference between empherical storage and EBS block storage?
+Ans:- 
+In empherical storage there is no network latency and u can't attach or detach it to another. 
+But In ebs u can attach or detach it from any instances.
+
+5) Can you create multiple files in HDFS with varying block sizes?
+Yes, it is possible to create multiple files in HDFS with different block sizes using an API. 
+The block size can be specified during the time of file creation
+
+6) Mention what does the text input format do?
+The text input format will create a line object that is an hexadecimal number.  
+The value is considered as a whole line text while the key is considered as a line object.
+
+7) What are active and passive “Namenodes”?
+Answer:
+- Active “Namenode” is the “Namenode” which works and runs in the cluster. Passive “Namenode” is a standby “Namenode”, which has similar data as active “Namenode”. 
+- When the active “Namenode” fails, the passive “Namenode” replaces the active “Namenode” in the cluster. 
+
+8) Is it possible to copy files across multiple clusters? If yes, how can you accomplish this?
+Answer: 
+Yes, it is possible to copy files across multiple Hadoop clusters and this can be achieved using distributed copy. 
+DistCP commands is used for intra or inter cluster copying.
+
+9) How can you add and remove nodes from the Hadoop cluster?
+Answer:
+To add new nodes to the HDFS cluster, the hostnames should be added to the slaves file and then Data Node and Task Tracker should be started on the new node.
+To remove or decommission nodes from the HDFS cluster, the hostnames should be removed from the slaves file and –refresh Nodes should be executed.
+
+10) Let’s Take A Scenario, Let’s Say We Have Already Cloudera In A Cluster, Now If We Want To Form A Cluster On Ubuntu Can We Do It. Explain In Brief?
+Answer :
+Yes, we can definitely do it. We have all the useful installation steps for creating a new cluster. 
+The only thing that needs to be done is to uninstall the present cluster and install the new cluster in the targeted environment.
+
+11) What Are The Network Requirements For Hadoop?
+Answer :
+The Hadoop core uses Shell (SSH) to launch the server processes on the slave nodes. 
+It requires password-less SSH connection between the master and all the slaves and the Secondary machines.
+
+12) What Is Meant By Heartbeat In Hdfs?
+Answer :
+Data nodes and task trackers send heartbeat signals to Name node and Job tracker respectively to inform that they are alive. 
+If the signal is not received it would indicate problems with the node or task tracker.
+
+13) Why Do We Need A Password-less Ssh In Fully Distributed Environment?
+Answer :
+Because when the cluster is LIVE and running in Fully Distributed environment, the communication is too frequent. 
+The job tracker should be able to send a task to task tracker quickly.
+
+14) Explain what happens in textinputformat ?
+In textinputformat, each line in the text file is a record.  
+Value is the content of the line while Key is the byte offset of the line. This is the default input format defined in Hadoop.
+
+15) Explain the difference between NAS and HDFS. 
+NAS runs on a single machine and thus there is no probability of data redundancy whereas 
+HDFS runs on a cluster of different machines thus there is data redundancy because of the replication protocol.
+
+16) Expalin Checkpoint Node?
+Checkpoint Node keeps track of the latest checkpoint in a directory that has same structure as that of Name Node’s directory. 
+Checkpoint node creates checkpoints for the namespace at regular intervals by downloading the edits and fsimage file from the NameNode and merging it locally. 
+
+17) Explain BackupNode?
+Backup Node also provides check pointing functionality like that of the checkpoint node but 
+it also maintains its up-to-date in-memory copy of the file system namespace that is in sync with the active NameNode.
+
+18) What is a block and block scanner in HDFS? 
+Block - The minimum amount of data that can be read or written is generally referred to as a “block” in HDFS. 
+Block Scanner - Block Scanner tracks the list of blocks present on a Data Node and verifies them to find any kind of checksum errors. 
+
+19) Are job tracker and task trackers present in separate machines? *
+- Yes, job tracker and task tracker are present in different machines. 
+- The reason is job tracker is a single point of failure for the Hadoop MapReduce service. If it goes down, all running jobs are halted.
+
+20) What is a Namenode?
+Answer:
+- It is the master node on which job tracker runs and consists of the metadata. 
+- It maintains and manages the blocks which are present on the datanodes. 
+- It is a high-availability machine and single point of failure in HDFS.
+
+21) Is Namenode also a commodity hardware?
+Answer:
+- No. Namenode can never be commodity hardware because the entire HDFS rely on it. 
+- It is the single point of failure in HDFS. Namenode has to be a high-availability machine.
+
+22) What is a Datanode?
+Answer:
+- Datanodes are the slaves which are deployed on each machine and provide the actual storage. 
+- These are responsible for serving read and write requests for the clients.
+
+23) What is the basic difference between traditional RDBMS and Hadoop?
+- Traditional RDBMS is used for transactional systems to report and archive the data, whereas 
+- Hadoop is an approach to store huge amount of data in the distributed file system and process it. 
+
+24) How indexing is done in HDFS?
+Answer:
+- Hadoop has its own way of indexing. Depending upon the block size, once the data is stored, 
+- HDFS will keep on storing the last part of the data which will say where the next part of the data will be.
+
+25) What is the purpose of dfsadmin tool?
+Answer:
+1. It is used to find information about the state of HDFS
+2. It performs administrative tasks on HDFS
+
+26) What Are The Two Main Parts Of The Hadoop Framework?
+Answer :
+- Hadoop distributed file system, a distributed file system with high throughput,
+- Hadoop MapReduce, a software framework for processing large data set
+
+27) Explain what is a sequence file in Hadoop?
+Hadoop supports text files which are quite commonly used for storing the data, besides the text files it also supports binary files and one of these binary formats are called Sequence files. 
+Hadoop Sequence file is a flat file structure which consists of serialized/binary key-value pairs
+
+28) Do you think spark can replace mapreduce? 
+
+Answer:
+Yes, becuase Apache Spark is growing very quickly and replacing MapReduce. 
+Apache Spark is much-advance cluster computing engine than MapReduce
+
+29) What is IAM in cloud AWS?
+Answer:
+AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. 
+You use IAM to control who is authenticated (signed in) and authorized (has permissions) to use resources
+
+30) Have you set the preemptions 
+what is preemption?
+
+Answer:
+Yes, when no resources are unused in a cluster, and some under-satisfied queues ask for new resources, 
+the cluster will take back resources from queues that are consuming more than their configured capacities.
+
+31) What is the edge node ?
+Ans. Edge node is a gateway node, it is an interface between the Hadoop cluster and the outside network. 
+
+32) - What is a Secondary Namenode? Is it a substitute to the Namenode?
+Ans. 
+- The secondary Namenode constantly reads the data from the RAM of the Namenode and writes it into the hard disk or the file system. 
+- It is not a substitute to the Namenode, so if the Namenode fails, the entire Hadoop system goes down.
+
+33) What is role of HiveMetastore?
+Answer:
+- It contains metadata about the actual table. It is the central repository of Apache Hive metadata. 
+- This is default store by derby databse but you can use mySQL, Oracle as well.
+
+34) What are managed and external tables?
+Answer:
+- Data and metadata for managed tables are under the control of hive.
+- For external tables, only metadata is under the control of hive. 
+
+35) Why is Spark faster than MapReduce?
+Answer:
+The secret is that it runs in-memory on the cluster, and that it isn't tied to Hadoop's MapReduce two-stage paradigm.
+This makes repeated access to the same data much faster
+
+36) How is kafka different from flume?
+Answer:
+Kafka: It is a publish-subscribe model messaging system.
+FLume: It is a system for data collection, aggregation & movement.
+
+37) Can spark replace Hadoop?
+Spark can never be a replacement for Hadoop! Spark is a processing engine that functions on top of the Hadoop ecosystem.
+Spark is built to increase the processing speed of the Hadoop ecosystem and to overcome the limitations of MapReduce.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Set Two
+======
+
+38) Where does the data of a Hive table gets stored?
+Answer:
+- By default, the Hive table is stored in an HDFS directory /user/hive/warehouse.
+- It is specified in hive.metastore.warehouse.dir configuration parameter present in the hive-site.xml
+
+39) How often should the Name Node be reformatted?
+The Name Node should never be reformatted. Doing so will result in complete data loss. 
+Name Node is formatted only once at the beginning after which it creates the directory structure for file system metadata and namespace ID for the entire file system
+
+40) What is streaming access?
+Data is not read as chunks or packets but rather comes in at a constant bit rate. 
+The application starts reading data from the beginning of the file and continues in a sequential manner.
+
+41) When writing a data block, an HDFS client must open a connection to each Data Node provided in the list from the Name Node.
+ An HDFS client only writes to the first Data Node, which writes to the next Data Node, which in turn writes to the next Data Node, and so on…
+
+42) Regarding data block placement during write operations, what is the primary concern when deciding where to place the second replica?
+The primary concern is availability. HDFS chooses a Data Node on another rack, or if there is no other rack, at least another Data Node.
+
+43) What is the purpose of safe mode during Name Node startup?
+It is a read-only mode that provides the Name Node time to collect block reports from the Data Nodes. 
+The block reports are used to rebuild the in-memory block map used to locate and read file data.
+
+44) Difference between authentication and authorization?
+Answer:	Authentication: it is allowing you access over the network or machine. Authorisation:  
+It is allowing you to perform a higher level task which requires you to authenticate yourself
+
+45) What is Apache Hadoop YARN?
+YARN is a powerful and efficient feature rolled out as a part of Hadoop 2.0.YARN is a large scale 
+Distributed system for running big data applications.
+
+46) - Does the name-node stay in safe mode till all under-replicated files are fully replicated?
+Ans. 
+- No. During safe mode replication of blocks is prohibited. 
+- The name-node awaits when all or majority of data-nodes report their blocks.
+
+47) Whenever a client submits a hadoop job, who receives it?
+Name Node receives the Hadoop job which then looks for the data requested by the client and provides the block information. 
+Job Tracker takes care of resource allocation of the hadoop job to ensure timely completion.
+
+48) How often should the Name Node be reformatted?
+The Name Node should never be reformatted. Doing so will result in complete data loss. 
+Name Node is formatted only once at the beginning after which it creates the directory structure for file system metadata and namespace ID for the entire file system.
+
+49) You increase the replication level but notice that the data is under replicated. What could have gone wrong?
+Nothing could have actually wrong, if there is huge volume of data because data replication usually takes times based on data size as the cluster has to copy the data and it might take a few hours.
+
+50) What is Hadoop streaming? 
+Hadoop distribution has a generic application programming interface for writing Map and Reduce jobs in any desired programming language like Python, Perl, Ruby, etc. 
+This is referred to as Hadoop Streaming. Users can create and run jobs with any kind of shell scripts or executable as the Mapper or Reducers.
+
+51) While I am reading the data the namenode goes down what will happen
+There won’t be any impact as the location of the data blocks have already been conveyed to the client before the reading was started, hence the task will complete
+
+52) What is the best practice to deploy a secondary Name Node?
+It is always better to deploy a secondary Name Node on a separate standalone machine. 
+When the secondary Name Node is deployed on a separate machine it does not interfere with the operations of the primary node.
+
+53) YARN is designed to be able to recover from failure of which components?
+Any of them. Resource Manager, Node Manager, container, Application Master, and if Application Master is designed correctly, job tasks as well.
+
+54) Explain what is storage and compute nodes?
+•	The storage node is the machine or computer where your file system resides to store the processing data
+•	The compute node is the computer or machine where your actual business logic will be executed.
+
+55) - What is speculative execution in Hadoop?
+Ans. 
+- If a node appears to be running slow, the master node can redundantly execute another instance of the same task and first output will be taken this process is called as Speculative execution.
+
+56) How do you enable a sudo access.
+You need to first add users,  then make a group and add that particular to that group and will have to make an entry in the sudoers file /etc/sudoers that is the name of the user and the password.
+
+57) Concept of repository – Online & offline.
+Ans. A repository is a central place where data is stored and maintained in an organized way. 
+A repository may be directly accessible to users or may be a place from which databases, files or documents are obtained for further reallocation or distribution over the network. 
+
+58) What is Hadoop Map Reduce ?
+For processing large data sets in parallel across a hadoop cluster, HadoopMapReduce framework is used.  Data analysis uses a two-step map and reduce process.
+
+59) How HadoopMapReduce works?
+In MapReduce, during the map phase it counts the words in each document, while in the reduce phase it aggregates the data as per the document spanning the entire collection. 
+During the map phase the input data is divided into splits for analysis by map tasks running in parallel across Hadoop framework.
+
+60) Explain how is data partitioned before it is sent to the reducer if no custom partitioner is defined in Hadoop?
+If no custom partitioner is defined in Hadoop, then a default partitioner computes a hash value for the key and assigns the partition based on the result.
+
+61) How will you check which roles is assigned to which group?
+Ans:Goto the security tab in cloudera mnger then we see here are differnt user for differnt group.we can see which role is assign to which user.
+
+62) Explain how JobTracker schedules a task ?
+The task tracker send out heartbeat messages to Jobtracker usually every few minutes to make sure that JobTracker is active and functioning.  
+The message also informs JobTracker about the number of available slots, so the JobTracker can stay upto date with where in the cluster work can be delegated
+
+63) Explain what is a Task Tracker in Hadoop?
+A Task Tracker in Hadoop is a slave node daemon in the cluster that accepts tasks from a JobTracker. 
+It also sends out the heartbeat messages to the JobTracker, every few minutes, to confirm that the JobTracker is still alive.
+
+64) If a Data Node is marked as decommissioned, can it be chosen for replica placement? 
+Whenever a Data Node is marked as decommissioned it cannot be considered for replication but it continues to serve read request until the node enters the decommissioned state completely 
+i.e. till all the blocks on the decommissioning Data Node are replicated. 
+
+65) What are the advantages of a block transfer? 
+The size of a file can be larger than the size of a single disk within the network. Blocks from a single file need not be stored on the same disk and can make use of different disks present in the Hadoop cluster. 
+This simplifies the entire storage subsystem providing fault tolerance and high availability. 
+
+66) How will you empty the trash in HDFS? 
+Just like many desktop operating systems handle deleted files without a key, HDFS also moves all the deleted files into trash folder stored at /user/hdfs/.Trash. 
+The trash can be emptied by running the following command- 
+Hdfs –dfs expunge 
+
+67) Have you ever configured capacity scheduler ? if yes how do you configure ?
+Ans. In Horton works Ambari we will select Yarn services and then go the the configs tab. By default there is only one queue which is default queue(check in Resource Manager UI). We can add different queues & policy for different departments (jobs).
+
+68) What is Alert Mechanism ?
+Difference between cloud watch & Ambari
+Cloudwatch is specific to instances (AWS) it alerts in regards to the resouces i.e. cpu, ram, network etc. & 
+Ambari alerting is alerts for everything like, services, components, resources,etc.
+
+69) Explain what is the function of MapReducer partitioner?
+The function of MapReducerpartitioner is to make sure that all the value of a single key goes to the same reducer, 
+eventually which helps evenly distribution of the map output over the reducers
+
+70)  About Hive and Impala?
+Answer:	
+Hive is a batch processing system it runs Mapreduce jobs on backend. 
+Impala is an in memory solution which gives interactive querying.
+
+71)  Explain what is sqoop in Hadoop ?
+To transfer the data between Relational database management (RDBMS) and Hadoop HDFS a tool is used known as Sqoop. 
+Using Sqoop data can be transferred from RDMS like MySQL or Oracle into HDFS as well as exporting data from HDFS file to RDBMS
+
+72) Are you used oozie and zookeeper in cluster
+Zookeeper: The Zookeeper is used for managing ‘coordination related’ data. It has simple Client Server model architecture
+Oozie:
+•Used for Hadoop job scheduler.
+•also used for Monitoring and Alerting Hadoop jobs 
+
+73) If I have one job it’s completed 70% and suddenly some issue happen like RM goes down aur that node goes down so what will happen 
+to containers which was taken by job
+Ans:If RM goes goes that job is also failed but if RM is active but that node goes down in that condition starts the same job on other node.
+
+74) What is commodity hardwar Does it include RAM?
+“Commodity hardware” is a non-expensive system which doesn’t have high quality or high availability. Hadoop can be installed in any average commodity hardware.  
+Yes, commodity hardware includes RAM because some services might still be running on RAM.
+
+75) Explain about the process of inter cluster data copying. 
+Answer:
+HDFS provides a distributed data copying facility through the DistCP from source to destination. 
+DistCP requires both source and destination to have a compatible or same version of hadoop.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
