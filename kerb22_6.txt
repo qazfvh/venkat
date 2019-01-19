@@ -1,0 +1,27 @@
+Valid starting     Expires            Service principal
+06/22/16 13:06:26  06/23/16 13:06:26  krbtgt/IT.LOCAL@IT.LOCAL
+        renew until 06/22/16 13:06:26
+[root@hwmaster ~]# kdestroy
+[root@hwmaster ~]# klist
+klist: No credentials cache found (ticket cache FILE:/tmp/krb5cc_0)
+[root@hwmaster ~]# kinit -l 2d -kt /etc/security/keytabs/hive.service.keytab hive/hwmaster.it.local@IT.LOCAL
+[root@hwmaster ~]# klist
+Ticket cache: FILE:/tmp/krb5cc_0
+Default principal: hive/hwmaster.it.local@IT.LOCAL
+
+Valid starting     Expires            Service principal
+06/22/16 13:08:39  06/23/16 13:08:39  krbtgt/IT.LOCAL@IT.LOCAL
+        renew until 06/22/16 13:08:39
+[root@hwmaster ~]# vi /etc/krb5.conf
+[root@hwmaster ~]# vi /var/kerberos/krb5kdc/kdc.conf
+[root@hwmaster ~]# vi /etc/krb5.conf
+[root@hwmaster ~]# vi /etc/krb5.conf
+[root@hwmaster ~]#
+
+
+
+ 
+kinit -l 15h  -kt /etc/security/keytabs/hive.service.keytab hive/hwmaster.it.local@IT.LOCAL
+
+
+ sed -i 's/192.168.16.133/10.2.2.46/g'
