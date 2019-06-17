@@ -1,0 +1,272 @@
+﻿
+Hardened Redhat 7.3
+Step 1:
+
+Host file update
+/ets/hosts
+  
+172.31.38.157     ip-172-31-38-157.ec2.internal
+
+
+
+
+
+
+Step 2:
+
+Update hostname in /etc/sysconfig/network
+[root@nn1 ~]# cat /etc/sysconfig/network
+NETWORKING=yes
+HOSTNAME=ip-172-31-38-157.ec2.internal
+
+
+Step 3:
+
+vi /etc/sysconfig/selinux
+SELINX=disabled
+getenforce
+
+Step 4: 
+
+Stop firewall
+systemctl stop firewalld.service
+systemctl disable firewalld.service
+
+Step 5:
+
+echo 1 > /proc/sys/vm/swappiness
+
+
+Step 6:
+
+Disable Transparent Hugepages, 
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/defrag
+
+Step 7:
+
+Disable the tuned Service
+1. Ensure that the tuned service is started:
+systemctl start tuned
+
+2. Turn the tuned service off:
+tuned-adm off
+
+3. Ensure that there are no active profiles:
+tuned-adm list
+The output should contain the following line:
+No current active profile
+
+4. Shutdown and disable the tuned service:
+systemctl stop tuned
+systemctl disable tuned
+
+
+5. Reboot nodes
+
+================================================================================
+wget https://repo.mysql.com/mysql80-community-release-el7-1.noarch.rpm
+wget https://repo.mysql.com/mysql80-community-release-el7-1.noarch.rpm
+yum localinstall mysql80-community-release-el7-1.noarch.rpm
+yum localinstall mysql80-community-release-el7-1.noarch.rpm
+https://dev.mysql.com/get/mysql80-community-release-el6-1.noarch.rpm
+yum repolist enabled | grep "mysql.*-community.*"
+yum install mysql-community-server
+yum install mysql-community-server
+service mysqld start
+
+a.)	Download and copy MySQL
+ tar files to home folder using WINSCP.
+
+	https://dev.mysql.com/downloads/file/?id=471503
+  	wget https://dev.mysql.com/get/archives/mysql-5.7/mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar
+	https://dev.mysql.com/get/archives/mysql-5.7/mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar
+
+b.)	Extract files downloaded.
+	tar xf mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar
+
+c.)	Install  components.
+	 rpm -ivh mysql-community-common-5.7.19-1.el7.x86_64.rpm
+	 rpm -ivh mysql-community-libs-5.7.19-1.el7.x86_64.rpm
+	 rpm -ivh mysql-community-libs-compat-5.7.19-1.el7.x86_64.rpm
+	 rpm -ivh mysql-community-devel-5.7.19-1.el7.x86_64.rpm
+	 rpm -ivh mysql-community-client-5.7.19-1.el7.x86_64.rpm
+	 rpm -ivh mysql-community-server-5.7.19-1.el7.x86_64.rpm
+
+d.)	Start MySQL server.
+	$  systemctl start mysqld
+
+e.)	Stop the MySQL server if it is running.
+	$  systemctl stop mysqld
+
+f.)	Ensure the MySQL server starts at boot.
+	$  /sbin/chkconfig mysqld on
+ 
+g.)	Start the MySQL server if it is running.
+	$  systemctl start mysqld
+
+	
+	
+h.)	Get the temporary password for root user.
+	$  cat /etc/my.cnf
+	Location of where password stored:	
+	log-error=/var/log/mysqld.log
+	grep temp /var/log/mysqld.log   
+	Find password after the following text:		
+	A temporary password is generated for root@localhost:   n5*36lgk?Mo7
+
+i.)	Hardening the MySQL database server by running secure installation and selecting the same options as below.
+	$  /usr/bin/mysql_secure_installation
+	[...]
+	Enter current password for root (enter for none)
+	OK, successfully used password, moving on...
+	[...]
+	Set root password? [Y/n] y
+	New password: F4tC0ntr0ll3r!
+	Re-enter new password: F4tC0ntr0ll3r!
+	Remove anonymous users? [Y/n] Y
+	[...]
+	Disallow root login remotely? [Y/n] N
+	[...]
+	Remove test database and access to it [Y/n] Y
+	[...]
+	Reload privilege tables now? [Y/n] Y
+
+j.)	Test new root login works.
+	mysql -u root -p
+k.)	Disable the Linux Firewall.
+	$  systemctl stop firewalld
+	$  systemctl disable firewalld
+	$  systemctl status firewalld
+
+	
+
+
+
+
+
+
+3.3	CREATING DATABASE FOR CLOUDERA MANAGER
+a.) 	Creating Databases for Reports Manager, Hive Metastore Server, Sentry 	Server, Cloudera Navigator Audit Server, and Cloudera Navigator Metadata Server.
+
+create database rmon DEFAULT CHARACTER SET utf8;
+create database hive DEFAULT CHARACTER SET utf8;
+create database sentry DEFAULT CHARACTER SET utf8;
+create database nav DEFAULT CHARACTER SET utf8;
+create database navms DEFAULT CHARACTER SET utf8;
+create database hue DEFAULT CHARACTER SET utf8;
+create database clouderascm DEFAULT CHARACTER SET utf8;
+create database sample DEFAULT CHARACTER SET utf8;
+
+
+b.)	Create a database users and passwords.
+
+CREATE USER 'rmon'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+GRANT ALL ON *.* TO 'rmon'@'%';
+flush privileges;
+
+CREATE USER 'hive'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+GRANT ALL ON *.* TO 'hive'@'%';
+
+
+CREATE USER 'hue'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+GRANT ALL ON *.* TO 'hue'@'%';
+
+CREATE USER 'rmon'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+GRANT ALL ON *.* TO 'rmon'@'%';
+
+CREATE USER 'clouderascm'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+GRANT ALL ON *.* TO 'clouderascm'@'%';
+
+
+
+CREATE USER 'nav'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+GRANT ALL ON *.* TO 'nav'@'%';
+
+CREATE USER 'navms'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+GRANT ALL ON *.* TO 'navms'@'%';
+
+CREATE USER 'oozie'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+GRANT ALL ON *.* TO 'oozie'@'%';
+
+grant all on rmon.* TO 'rmon'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+grant all on hive.* TO 'hive'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+grant all on sentry.* TO 'sentry'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+grant all on nav.* TO 'nav'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+grant all on navms.* TO 'navms'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+grant all on hue.* TO 'hue'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+grant all on clouderascm.* TO 'clouderascm'@'%' IDENTIFIED BY 'Th0m4sT4nk!';
+
+c.) 	Create the Oozie Database and Oozie MySQL User.
+create database oozie default character set utf8;
+grant all privileges on oozie.* to 'oozie'@'localhost' identified by 'Th0m4sT4nk!';
+grant all privileges on oozie.* to 'oozie'@'%' identified by 'Th0m4sT4nk!';
+
+
+
+Node 1
+
+
+===============
+Node 2 - CM integrate - Node 1
+
+
+
+3.2	INSTALLING THE MYSQL JDBC DRIVER
+a.)	Download and copy the MySQL JDBC driver to home folder using WINSCP.	http://www.mysql.com/downloads/connector/j/5.1.html
+    wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.46.tar.gz
+
+b.)	Extract the JDBC driver JAR file from the downloaded file.
+	tar zxvf mysql-connector-java-5.1.46.tar.gz
+
+c.)	Create the target directory.
+	$  mkdir -p /usr/share/java/
+
+d.)	Copy the JDBC driver, renamed, to the relevant host.
+$  cp mysql-connector-java-5.1.46-bin.jar 	/usr/share/java/mysql-connector-java.jar
+
+=========================================================================================================
+
+
+
+https://www.cloudera.com/documentation/enterprise/5-12-x/topics/cm_ig_install_path_b.html
+
+Step 1: Download Cloudera Manager repo file (cloudera-manager.repo) for your system to /etc/yum.repos.d/
+        cloudera-manager.repo
+
+cd /etc/yum.repos.d/
+
+vi cloudera-manager.repo
+
+[cloudera-manager]
+# Packages for Cloudera Manager, Version 5, on RedHat or CentOS 7 x86_64           	  
+name=Cloudera Manager
+baseurl=https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/5.10.1/
+gpgkey =https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/RPM-GPG-KEY-cloudera    
+gpgcheck = 1
+
+
+Step 2: Install Java
+         oracle-j2sdk1.7
+		 
+vi .bashrc
+export JAVA_HOME=/usr/java/jdk1.7.0_80
+export PATH=$JAVA_HOME/bin:$PATH
+
+Step 3: Install the Cloudera Manager Server Packages
+		yum install cloudera-manager-daemons cloudera-manager-server
+		
+Step 4: Preparing a Cloudera Manager Server External Database
+		/usr/share/cmf/schema/scm_prepare_database.sh mysql -h 172.31.38.157 clouderascm clouderascm Th0m4sT4nk! 
+
+ 		
+		
+Step 5: Start the Cloudera Manager Server
+		service cloudera-scm-server start
+		
+Step 6: Start and Log into the Cloudera Manager Admin Console
+		http://3.217.179.241:7180
+		
+		CM log : /var/log/cloudera-scm-server/cloudera-scm-server.log
+		
+
